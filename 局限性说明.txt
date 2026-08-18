@@ -1,0 +1,22 @@
+1.平台和工具依赖：
+仅支持Linux x86/x86-64 ELF文件：不支持异架构
+强依赖IDA Pro：若未安装或未正确配置IDA_PATH，反编译功能将失效
+GDB和core dump依赖：需启用ulimit -c unlimited
+基于DeepSeek-V4模型
+
+2.能力有限：
+无法帮助用户配置libc和ld，完全相信用户提供的libc版本
+针对栈利用和基础堆利用
+AI有时会忽略系统提示
+TF-IDF检索精度有限，语义理解弱，本地知识库需手动维护
+
+3.监控与调试限制：
+ _IOproxy仅支持pwntools的process和remote，不覆盖其他IO操作
+GDB存在超时问题，如果断点设置不当，GDB可能卡死直到超时(默认15s)
+虽然有finally删除临时目录，但如果GDB超时，部分临时文件可能残留
+
+4.安全性:
+run_cmd 使用shell = True，存在潜在注入风险
+EXP在本地执行
+
+5.当前项目不具备程序化自动部署能力

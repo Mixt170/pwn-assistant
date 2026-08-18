@@ -1,0 +1,24 @@
+1._IOProxy类
+通过build_exp在EXP头部注入代理，劫持pwn.process和pwn.remote
+重载send, recv , recvuntil , interactive等方法，记录所有收发数据
+检测shell标志和crash标志，并验证SHELL
+将状态文件写入state.json
+注册atexit，确保进程异常终止也能保存现场
+
+2.GDB调试
+run_gdb 支持四种预设模板：
+crash：崩溃分析(寄存器，代码段，栈，崩溃地址)
+offset: 利用pwntools的cyclic自动计算栈溢出偏移
+stack：栈帧，重要寄存器和局部变量
+heap：堆结构与bins信息
+可自动处理payload注入并帮助重定向
+可解析GDB输出，通过寻找关键词方式提取寄存器，信号，崩溃地址
+
+3.本地知识库
+基于TF-IDF向量化与余弦相似度，匹配./tiku目录下的.txt / .py文件
+返回最相似的k个文件供AI参考
+
+4.静态分析
+使用pwntools的ELF和ROP类解析二进制与libc
+自动提取关键函数偏移，gdbget，GOT表，BSS地址
+调用IDA命令行导出反编译伪代码，并清理IDA生成的临时垃圾文件

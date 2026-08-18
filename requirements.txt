@@ -1,0 +1,14 @@
+# 核心 GUI 框架
+PySide6
+
+# AI 大模型 API 客户端（DeepSeek/OpenAI）
+openai
+
+# 环境变量管理（读取 .env 文件）
+python-dotenv
+
+# 本地知识库检索（TF-IDF 向量化 + 相似度计算）
+scikit-learn
+
+# CTF Pwn 核心库（ELF 解析、ROP 构造、远程/本地交互）
+pwntools
