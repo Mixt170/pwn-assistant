@@ -1,0 +1,189 @@
+// ========== Function: .init_proc ==========
+// Alternative name is '_init'
+__int64 (**init_proc())(void)
+{
+  __int64 (**result)(void); // rax
+
+  result = &_gmon_start__;
+  if ( &_gmon_start__ )
+    return (__int64 (**)(void))_gmon_start__();
+  return result;
+}
+
+
+// ========== Function: sub_400580 ==========
+__int64 sub_400580()
+{
+  return qword_601010();
+}
+
+
+// ========== Function: .puts ==========
+// attributes: thunk
+int puts(const char *s)
+{
+  return puts(s);
+}
+
+
+// ========== Function: .setbuf ==========
+// attributes: thunk
+void setbuf(FILE *stream, char *buf)
+{
+  setbuf(stream, buf);
+}
+
+
+// ========== Function: .system ==========
+// attributes: thunk
+int system(const char *command)
+{
+  return system(command);
+}
+
+
+// ========== Function: .gets ==========
+// attributes: thunk
+__int64 gets()
+{
+  return gets();
+}
+
+
+// ========== Function: .fflush ==========
+// attributes: thunk
+int fflush(FILE *stream)
+{
+  return fflush(stream);
+}
+
+
+// ========== Function: _start ==========
+// positive sp value has been detected, the output may be wrong!
+void __fastcall __noreturn start(__int64 a1, __int64 a2, void (*a3)())
+{
+  __int64 v3; // rax
+  int v4; // esi
+  __int64 v5; // [rsp-8h] [rbp-8h] BYREF
+  char *retaddr; // [rsp+0h] [rbp+0h] BYREF
+
+  v4 = v5;
+  v5 = v3;
+  _libc_start_main((int (*)(int, char **, char **))main, v4, &retaddr, _libc_csu_init, _libc_csu_fini, a3, &v5);
+  __halt();
+}
+
+
+// ========== Function: _dl_relocate_static_pie ==========
+void dl_relocate_static_pie()
+{
+  ;
+}
+
+
+// ========== Function: deregister_tm_clones ==========
+void *deregister_tm_clones()
+{
+  return &_TMC_END__;
+}
+
+
+// ========== Function: register_tm_clones ==========
+__int64 register_tm_clones()
+{
+  return 0;
+}
+
+
+// ========== Function: __do_global_dtors_aux ==========
+void *_do_global_dtors_aux()
+{
+  void *result; // rax
+
+  if ( !completed_7698 )
+  {
+    result = deregister_tm_clones();
+    completed_7698 = 1;
+  }
+  return result;
+}
+
+
+// ========== Function: frame_dummy ==========
+__int64 frame_dummy()
+{
+  return register_tm_clones();
+}
+
+
+// ========== Function: NSS ==========
+int NSS()
+{
+  puts(
+    "---    ---    ---------     ---------\n"
+    "| | \\  | |   / /----|__|   / /----|__|\n"
+    "| |\\ \\ | |   | |_______    | |_______\n"
+    "| | \\ \\| |   \\ ______  \\   \\ ______  \\\n"
+    "| |  \\ \\ |    _______| |    _______| |\n"
+    "| |   \\__|   |_________/   |_________/\n"
+    "[+] Welcome to NSS , this is a very simple PWN question for getting started>");
+  return fflush(stdout);
+}
+
+
+// ========== Function: init ==========
+void init()
+{
+  setbuf(stdin, 0);
+  setbuf(stdout, 0);
+  setbuf(stderr, 0);
+}
+
+
+// ========== Function: LookAtMe ==========
+int LookAtMe()
+{
+  return system("/bin/sh");
+}
+
+
+// ========== Function: main ==========
+int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  init();
+  NSS();
+  return gets();
+}
+
+
+// ========== Function: __libc_csu_init ==========
+void __fastcall _libc_csu_init(unsigned int a1, __int64 a2, __int64 a3)
+{
+  signed __int64 v4; // rbp
+  __int64 i; // rbx
+
+  v4 = &_do_global_dtors_aux_fini_array_entry - _frame_dummy_init_array_entry;
+  init_proc();
+  if ( v4 )
+  {
+    for ( i = 0; i != v4; ++i )
+      ((void (__fastcall *)(_QWORD, __int64, __int64))_frame_dummy_init_array_entry[i])(a1, a2, a3);
+  }
+}
+
+
+// ========== Function: __libc_csu_fini ==========
+void _libc_csu_fini()
+{
+  ;
+}
+
+
+// ========== Function: .term_proc ==========
+// Alternative name is '_fini'
+void term_proc()
+{
+  ;
+}
+
+
